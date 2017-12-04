@@ -14,6 +14,9 @@ urlpatterns = [
     url(r'^snippets-mixin/$', views.mixin_snippet_list),
     url(r'^snippets-mixin/(?P<pk>[0-9]+)$', views.mixin_snippet_detail),
 
+    url(r'^snippets-generic-apiView/$', views.generic_api_view_snippet_list),
+    url(r'^snippets-generic-apiView/(?P<pk>[0-9]+)$', views.generic_api_view_snippet_detail),
+
     url(r'^admin/', admin.site.urls)
 ]
 
