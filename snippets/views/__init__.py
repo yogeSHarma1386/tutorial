@@ -1,5 +1,13 @@
-from .class_based import *
-from .function_based import snippet_detail as func_snippet_detail, snippet_list as func_snippet_list
+from . import function_based, class_based, mixin_based
 
-snippet_detail = SnippetDetail.as_view()
-snippet_list = SnippetList.as_view()
+# Step1
+func_snippet_detail = function_based.snippet_detail
+func_snippet_list = function_based.snippet_list
+
+# Step2
+klass_snippet_detail = class_based.SnippetList.as_view()
+klass_snippet_list = class_based.SnippetDetail.as_view()
+
+# Step3
+mixin_snippet_detail = mixin_based.SnippetDetail.as_view()
+mixin_snippet_list = mixin_based.SnippetList.as_view()
