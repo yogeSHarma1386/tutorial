@@ -27,7 +27,7 @@ class SnippetHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
 
         # Mentioning serializer-level:view_name explicitly
         extra_kwargs = {
-            'url': {'view_name': 'snippet-detail'}
+            'url': {'view_name': '{0}snippet-detail'.format(SerializerPreTextTypes.NORMAL.value)}
         }
 
 
@@ -43,5 +43,5 @@ class UserHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
 
         # Mentioning serializer-level:view_name explicitly
         extra_kwargs = {
-            'url': {'view_name': 'user-detail'}
+            'url': {'view_name': '{0}user-detail'.format(SerializerPreTextTypes.NORMAL.value)}
         }
