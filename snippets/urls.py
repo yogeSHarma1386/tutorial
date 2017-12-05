@@ -1,9 +1,14 @@
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include
+from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from . import views
+from .views import view_sets as routered_vs
+
+router = DefaultRouter()
+router.include_format_suffixes = False
 
 # Serializers
 urlpatterns = [
@@ -47,10 +52,21 @@ urlpatterns += [
     url(r'^users-vs/(?P<pk>[0-9]+)/$', views.vs_user_detail, name='vs-user-detail'),
 ]
 
+# Router(ed) Model View Sets
+router.register(r'r-vs-snippets', routered_vs.SnippetViewSet, base_name='r-vs-snippet')
+router.register(r'r-vs-users', routered_vs.UserViewSet, base_name='r-vs-user')
+
+urlpatterns += [
+    # Include this
+    url(r'^', include(router.urls))
+
+    # OR this
+    # url(r'^$', views.api_root),
+]
+
 # Common
 urlpatterns += [
 
-    url(r'^$', views.api_root),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^h-snippets/(?P<pk>[0-9]+)/highlight/$', views.SnippetHighlight.as_view(), name='h-snippet-highlight'),
