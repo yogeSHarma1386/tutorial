@@ -1,4 +1,10 @@
+from rest_framework import renderers, generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+
 from . import function_based, class_based, mixin_based, generic_api_view_based
+from ..models import Snippet
 
 ################################ Snippet Serializers ################################
 # Step1
@@ -22,3 +28,21 @@ generic_api_view_snippet_list = generic_api_view_based.SnippetList.as_view()
 
 generic_api_view_user_detail = generic_api_view_based.UserDetail.as_view()
 generic_api_view_user_list = generic_api_view_based.UserList.as_view()
+
+
+################################## Entry Point ##################################
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
+
+
+class SnippetHighlight(generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    renderer_classes = (renderers.StaticHTMLRenderer,)
+
+    def get(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
