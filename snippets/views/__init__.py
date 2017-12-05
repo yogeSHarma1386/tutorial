@@ -43,7 +43,10 @@ h_generic_api_view_user_list = h_generic.UserHyperLinkedList.as_view()
 def api_root(request, format=None):
     return Response({
         'users': reverse('user-list', request=request, format=format),
-        'snippets': reverse('snippet-list', request=request, format=format)
+        'snippets': reverse('snippet-list', request=request, format=format),
+
+        'h-users': reverse('h-user-list', request=request, format=format),
+        'h-snippets': reverse('h-snippet-list', request=request, format=format)
     })
 
 
