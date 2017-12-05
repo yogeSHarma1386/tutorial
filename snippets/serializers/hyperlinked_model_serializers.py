@@ -1,13 +1,24 @@
+from enum import Enum
+
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from ..models import Snippet
 
 
+class SerializerPreTextTypes(Enum):
+    NORMAL = ''
+    VIEW_SET = 'vs-'
+    HYPERLINKED = 'h-'
+
+serializer_type_in_use = SerializerPreTextTypes.VIEW_SET.value
+
+
 class SnippetHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     # This view_name is field-level.
-    highlight = serializers.HyperlinkedIdentityField(view_name='h-snippet-highlight', format='html')
+    highlight = serializers.HyperlinkedIdentityField(view_name='{0}snippet-highlight'.format(serializer_type_in_use),
+                                                     format='html')
 
     class Meta:
         model = Snippet
@@ -22,7 +33,9 @@ class SnippetHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
     # This view_name is field-level.
-    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='h-snippet-detail', read_only=True)
+    snippets = serializers.HyperlinkedRelatedField(many=True,
+                                                   view_name='{0}snippet-detail'.format(serializer_type_in_use),
+                                                   read_only=True)
 
     class Meta:
         model = User
