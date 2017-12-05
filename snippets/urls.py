@@ -22,7 +22,7 @@ urlpatterns = [
 
     # User Serializers
     url(r'^users-generic-apiView/$', views.generic_api_view_user_list, name='user-list'),
-    url(r'^users-generic-apiView/(?P<pk>[0-9]+)/$', views.generic_api_view_user_detail, name='user-list'),
+    url(r'^users-generic-apiView/(?P<pk>[0-9]+)/$', views.generic_api_view_user_detail, name='user-detail'),
 
 
     # Hyper Linked Serializers
@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^snippets-h-generic-apiView/(?P<pk>[0-9]+)$', views.h_generic_api_view_snippet_detail, name='h-snippet-detail'),
 
     url(r'^users-h-generic-apiView/$', views.h_generic_api_view_user_list, name='h-user-list'),
-    url(r'^users-h-generic-apiView/(?P<pk>[0-9]+)/$', views.h_generic_api_view_user_detail, name='h-user-list'),
+    url(r'^users-h-generic-apiView/(?P<pk>[0-9]+)/$', views.h_generic_api_view_user_detail, name='h-user-detail'),
 
 
     # Common
