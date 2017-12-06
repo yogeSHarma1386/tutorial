@@ -6,9 +6,12 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 from . import views
 from .views import view_sets as routered_vs
+from rest_framework.schemas import get_schema_view
 
 router = DefaultRouter()
 router.include_format_suffixes = False
+
+schema_view = get_schema_view(title='Pastebin API')
 
 # Serializers
 urlpatterns = [
@@ -64,13 +67,18 @@ urlpatterns += [
     # url(r'^$', views.api_root),
 ]
 
+#
+urlpatterns += [
+    url(r'^schema/$', schema_view),
+]
+
 # Common
 urlpatterns += [
 
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^h-snippets/(?P<pk>[0-9]+)/highlight/$', views.SnippetHighlight.as_view(), name='h-snippet-highlight'),
 
+    url(r'^h-snippets/(?P<pk>[0-9]+)/highlight/$', views.SnippetHighlight.as_view(), name='h-snippet-highlight'),
 
     url(r'^vs-snippets/(?P<pk>[0-9]+)/highlight/$', views.SnippetHighlight.as_view(), name='vs-snippet-highlight'),
 ]
