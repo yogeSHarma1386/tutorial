@@ -10,7 +10,7 @@ from . import function_based, class_based, mixin_based, \
 from ..models import Snippet
 
 
-snippet_namespace = AppNameSpace.Snippets.value
+snippet_namespace = AppNameSpace.REST.value
 snippet_namespace_usage = snippet_namespace + ':'
 ################################## Snippet Serializers ###################################
 # Step1
@@ -77,19 +77,19 @@ def api_root(request, format=None):
         'users'         : reverse('{0}user-list'.format(snippet_namespace_usage),
                                   request=request, format=format),
         
-        'snippets'      : reverse('{0}snippet-list'.format(snippet_namespace_usage),
+        'rest'      : reverse('{0}snippet-list'.format(snippet_namespace_usage),
                                   request=request, format=format),
         
         'h-users'       : reverse('{0}h-user-list'.format(snippet_namespace_usage),
                                   request=request, format=format),
         
-        'h-snippets'    : reverse('{0}h-snippet-list'.format(snippet_namespace_usage),
+        'h-rest'    : reverse('{0}h-snippet-list'.format(snippet_namespace_usage),
                                   request=request, format=format),
         
         'vs-users'      : reverse('{0}vs-user-list'.format(snippet_namespace_usage),
                                   request=request, format=format),
         
-        'vs-snippets'   : reverse('{0}vs-snippet-list'.format(snippet_namespace_usage),
+        'vs-rest'   : reverse('{0}vs-snippet-list'.format(snippet_namespace_usage),
                                   request=request, format=format),
     })
 

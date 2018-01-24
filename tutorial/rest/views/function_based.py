@@ -9,7 +9,7 @@ from ..serializers import SnippetSerializer
 @api_view(['GET', 'POST'])
 def snippet_list(request, format=None):
     """
-    List all code snippets, or create a new snippet.
+    List all code rest, or create a new snippet.
     """
     if request.method == 'GET':
         snippets = Snippet.objects.all()

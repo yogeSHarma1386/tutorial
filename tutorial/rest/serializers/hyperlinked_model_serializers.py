@@ -7,7 +7,7 @@ from tutorial.utils import AppNameSpace
 from ..models import Snippet
 
 
-snippet_namespace = AppNameSpace.Snippets.value
+snippet_namespace = AppNameSpace.REST.value
 snippet_namespace_usage = snippet_namespace + ':'
 
 
@@ -46,7 +46,7 @@ class UserHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'id', 'username', 'snippets')
+        fields = ('url', 'id', 'username', 'rest')
 
         # Mentioning serializer-level:view_name explicitly
         extra_kwargs = {

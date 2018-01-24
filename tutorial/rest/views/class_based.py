@@ -9,7 +9,7 @@ from ..serializers import SnippetSerializer
 
 class SnippetList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all rest, or create a new snippet.
     """
     def get(self, request, format=None):
         snippets = Snippet.objects.all()

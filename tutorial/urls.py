@@ -22,8 +22,8 @@ from .utils import AppNameSpace
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    url('snippets/', include(('tutorial.snippets.urls', '_'),
-                             namespace=AppNameSpace.Snippets.value)),
+    url('rest/', include(('tutorial.rest.urls', '_'),
+                         namespace=AppNameSpace.REST.value)),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

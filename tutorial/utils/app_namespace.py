@@ -6,10 +6,10 @@ from .common import CustomizedUniqueEnum
 class AppNameSpace(CustomizedUniqueEnum):
     Base = 'All Tutorials'
 
-    Snippets = 'Serializers and ViewSet'
+    REST = 'REST Framework'
 
 
 class AppNames(CustomizedUniqueEnum):
     Base = 'tutorials'
 
-    Snippets = 'snippets'
+    REST = 'rest'
