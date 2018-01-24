@@ -3,14 +3,19 @@ from enum import Enum
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
+# from tutorial.tutorial.utils import AppNameSpace
 from ..models import Snippet
 
 
+snippet_namespace = 'snippets'
+snippet_namespace_usage = snippet_namespace + ':'
+
+
 class SerializerPreTextTypes(Enum):
-    NORMAL = ''
-    VIEW_SET = 'vs-'
-    HYPERLINKED = 'h-'
-    ROUTED_VIEW_SET = 'r-vs-'
+    NORMAL = snippet_namespace_usage + ''
+    VIEW_SET = snippet_namespace_usage + 'vs-'
+    HYPERLINKED = snippet_namespace_usage + 'h-'
+    ROUTED_VIEW_SET = snippet_namespace_usage + 'r-vs-'
 
 
 serializer_type_in_use = SerializerPreTextTypes.VIEW_SET.value

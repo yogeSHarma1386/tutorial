@@ -90,7 +90,7 @@ urlpatterns += [
         view=views.SnippetHighlightedView.as_view(),
         name='vs-snippet-highlight'),
 
-    # url(r'^', RedirectView.as_view(url='routed/')),
+    url(r'^', RedirectView.as_view(url='routed/')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
