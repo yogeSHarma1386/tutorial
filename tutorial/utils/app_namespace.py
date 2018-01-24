@@ -1,3 +1,5 @@
+from types import DynamicClassAttribute
+
 from .common import CustomizedUniqueEnum
 
 

@@ -3,11 +3,11 @@ from enum import Enum
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-# from tutorial.tutorial.utils import AppNameSpace
+from tutorial.utils import AppNameSpace
 from ..models import Snippet
 
 
-snippet_namespace = 'snippets'
+snippet_namespace = AppNameSpace.Snippets.value
 snippet_namespace_usage = snippet_namespace + ':'
 
 

@@ -17,11 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
+from .utils import AppNameSpace
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    url('snippets/', include(('snippets.urls', 'snippets'), namespace='snippets')),
+    url('snippets/', include(('tutorial.snippets.urls', '_'),
+                             namespace=AppNameSpace.Snippets.value)),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

@@ -3,13 +3,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
+from tutorial.utils import AppNameSpace
 from . import function_based, class_based, mixin_based, \
     view_sets, generic_api_view_based, \
     hyperlinked_generic_api_view_based as h_generic
 from ..models import Snippet
 
 
-snippet_namespace = 'snippets'
+snippet_namespace = AppNameSpace.Snippets.value
 snippet_namespace_usage = snippet_namespace + ':'
 ################################## Snippet Serializers ###################################
 # Step1
