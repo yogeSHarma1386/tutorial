@@ -10,7 +10,8 @@ class SerializerPreTextTypes(Enum):
     NORMAL = ''
     VIEW_SET = 'vs-'
     HYPERLINKED = 'h-'
-    ROUTERED_VIEW_SET = 'r-vs-'
+    ROUTED_VIEW_SET = 'r-vs-'
+
 
 serializer_type_in_use = SerializerPreTextTypes.VIEW_SET.value
 

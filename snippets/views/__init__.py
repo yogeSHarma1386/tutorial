@@ -3,7 +3,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from . import function_based, class_based, mixin_based, view_sets, generic_api_view_based, hyperlinked_generic_api_view_based as h_generic
+from . import function_based, class_based, mixin_based, \
+    view_sets, generic_api_view_based, \
+    hyperlinked_generic_api_view_based as h_generic
 from ..models import Snippet
 
 ################################## Snippet Serializers ###################################
@@ -68,18 +70,27 @@ vs_user_detail = view_sets.UserViewSet.as_view(
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'snippets': reverse('snippet-list', request=request, format=format),
-
-        'h-users': reverse('h-user-list', request=request, format=format),
-        'h-snippets': reverse('h-snippet-list', request=request, format=format),
-
-        'vs-users': reverse('vs-user-list', request=request, format=format),
-        'vs-snippets': reverse('vs-snippet-list', request=request, format=format),
+        'users'         : reverse('{0}user-list'.format(''),
+                                  request=request, format=format),
+        
+        'snippets'      : reverse('{0}snippet-list'.format(''),
+                                  request=request, format=format),
+        
+        'h-users'       : reverse('{0}h-user-list'.format(''),
+                                  request=request, format=format),
+        
+        'h-snippets'    : reverse('{0}h-snippet-list'.format(''),
+                                  request=request, format=format),
+        
+        'vs-users'      : reverse('{0}vs-user-list'.format(''),
+                                  request=request, format=format),
+        
+        'vs-snippets'   : reverse('{0}vs-snippet-list'.format(''),
+                                  request=request, format=format),
     })
 
 
-class SnippetHighlight(generics.GenericAPIView):
+class SnippetHighlightedView(generics.GenericAPIView):
     queryset = Snippet.objects.all()
     renderer_classes = (renderers.StaticHTMLRenderer,)
 
