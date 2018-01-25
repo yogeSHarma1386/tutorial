@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from tutorial.utils import EnvironmentVariables, get_env_variable
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -80,8 +82,12 @@ WSGI_APPLICATION = 'tutorial.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_variable(EnvironmentVariables.DB_NAME.value, default_value='django-practice'),
+        'USER': get_env_variable(EnvironmentVariables.DB_USER.value, default_value='postgres'),
+        'PASSWORD': get_env_variable(EnvironmentVariables.DB_PASSWORD.value, default_value='root'),
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
