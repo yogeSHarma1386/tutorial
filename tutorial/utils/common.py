@@ -1,5 +1,7 @@
 from enum import unique as unique_enum, Enum
 
+import os
+
 
 class CustomizedEnum(Enum):
     @classmethod
@@ -34,10 +36,6 @@ class CustomizedEnum(Enum):
 
 @unique_enum
 class UniquelyCustomizedEnum(CustomizedEnum):
-    pass
-
-
-class ModelEnum(UniquelyCustomizedEnum):
     pass
 
 
@@ -108,3 +106,18 @@ class DynamicEnum(Enum):
         value = lambda s: default_value if (default_value is not None or value_as_none) else s.value
         return {key(s): value(s) for s in cls.choices}
 
+
+class EnvironmentVariables(UniquelyCustomizedEnum):
+    DB_NAME = 'DJ_PRACTICE__DB_NAME'
+    DB_USER = 'DJ_PRACTICE__DB_USER'
+    DB_PASSWORD = 'DJ_PRACTICE__DB_PASSWORD'
+
+
+def get_env_variable(var_name, default_value=None):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        print(error_msg)
+
+        return default_value
