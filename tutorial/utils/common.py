@@ -33,11 +33,11 @@ class CustomizedEnum(Enum):
 
 
 @unique_enum
-class CustomizedUniqueEnum(CustomizedEnum):
+class UniquelyCustomizedEnum(CustomizedEnum):
     pass
 
 
-class ModelEnum(CustomizedUniqueEnum):
+class ModelEnum(UniquelyCustomizedEnum):
     pass
 
 

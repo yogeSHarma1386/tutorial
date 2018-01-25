@@ -1,15 +1,15 @@
 from types import DynamicClassAttribute
 
-from .common import CustomizedUniqueEnum
+from .common import UniquelyCustomizedEnum
 
 
-class AppNameSpace(CustomizedUniqueEnum):
+class AppNameSpace(UniquelyCustomizedEnum):
     Base = 'All Tutorials'
 
     REST = 'REST Framework'
 
 
-class AppNames(CustomizedUniqueEnum):
+class AppNames(UniquelyCustomizedEnum):
     Base = 'tutorials'
 
     REST = 'rest'
