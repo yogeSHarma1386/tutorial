@@ -1,6 +1,6 @@
-from enum import unique as unique_enum, Enum
-
 import os
+import time
+from enum import unique as unique_enum, Enum
 
 
 class CustomizedEnum(Enum):
@@ -51,8 +51,10 @@ def timeit(func):
         ts = time.time()
         result = func(*args, **kwargs)
         te = time.time()
-        logger.info('{method} ({args}, {kw}) took {time} sec'.format(
-            method=func.__name__, args=args, kw=kwargs, time=te - ts))
+        print('{method} ({args}, {kw}) took {time} sec'.format(method=func.__name__,
+                                                               args=args,
+                                                               kw=kwargs,
+                                                               time=te - ts))
         return result
     return wrapped
 
