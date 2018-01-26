@@ -1,5 +1,7 @@
+import collections
 import os
 import time
+
 from enum import unique as unique_enum, Enum
 
 
@@ -123,3 +125,45 @@ def get_env_variable(var_name, default_value=None):
         print(error_msg)
 
         return default_value
+
+
+def get_cleansed_from(value, exculsions):
+    """
+    This function will cleanse the :param value if it is present in exclusions, by returning None.
+
+    :param value : type - T
+    :param exculsions : type - [X]
+    :return: None or :param value
+    """
+    if (isinstance(value, str) or not isinstance(value, collections.Iterable)) and value is not None:
+        return None if value in exculsions else value
+    elif isinstance(value, collections.Iterable):
+        value = list(value)
+        [value if exculsion not in value else value.remove(exculsion) for exculsion in exculsions]
+        return value
+    else:
+        return None
+
+
+def safe_convert(value, type, default=None):
+    types = {
+        'int': int,
+        'float': float,
+        'str': str,
+        'bool': bool
+    }
+
+    if type == 'bool':
+        value = value.lower() if isinstance(value, str) else value
+
+        if value in ["true", True, 1, '1']:
+            return True
+        elif value in ["false", False, None, [], {}, (), set([]), 0, '0']:
+            return False
+        else:
+            return default
+    else:
+        try:
+            return types.get(type)(value)
+        except:
+            return default
