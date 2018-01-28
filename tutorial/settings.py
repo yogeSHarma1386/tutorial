@@ -40,10 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework',
+    ####################################
+    # For Django Extensions
     'django_extensions',
 
-    'tutorial.rest'
+    ####################################
+    # For REST Framework
+    'tutorial.rest',
+    'rest_framework',
+
+    ####################################
+    # For Django ViewFlow
+    'viewflow',
+    'tutorial.workflow',
 ]
 
 MIDDLEWARE = [
