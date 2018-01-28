@@ -1,10 +1,9 @@
 import collections
 
-from __builtin__ import reduce
 from django.db import connection
 from django.utils.decorators import ContextDecorator
 
-from tutorial.utils import UniquelyCustomizedEnum
+from .common import UniquelyCustomizedEnum
 
 
 class ModelEnum(UniquelyCustomizedEnum):
