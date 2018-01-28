@@ -52,7 +52,13 @@ INSTALLED_APPS = [
     ####################################
     # For Django ViewFlow
     'viewflow',
+    'viewflow.frontend',
+
+    'material',
+    'material.frontend',
+
     'tutorial.workflow',
+
 ]
 
 MIDDLEWARE = [

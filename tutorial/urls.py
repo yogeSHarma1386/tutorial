@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from django.views import generic
+from material.frontend import urls as frontend_urls
 
 from .utils import AppNameSpace
 
@@ -26,4 +28,11 @@ urlpatterns = [
                          namespace=AppNameSpace.REST.value)),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # url('workflow/', include(('tutorial.workflow.urls', '_'),
+    #                          namespace=AppNameSpace.WORKFLOW.value)),
+
+    # FIXME: Move me to workflow.urls
+    # QUESTION: How did frontend_urls figure out, where to end-up?
+    url(r'', include(frontend_urls)),
 ]
